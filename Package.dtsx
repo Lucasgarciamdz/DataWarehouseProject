@@ -1,0 +1,2021 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/18/2023 5:38:42 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LUCASVM"
+  DTS:CreatorName="LUCASVM\lucas"
+  DTS:DTSID="{8D05A0D3-EFDF-4DBC-A16D-5843A20118DD}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5270.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{8C5605F6-8DE9-4441-936D-2C52DFF87420}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LUCASVM.base_dw1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{9F2256F6-567E-4A48-8ACF-75406CF550A0}"
+      DTS:ObjectName="LUCASVM.base_dw1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LUCASVM;Initial Catalog=base_dw;Integrated Security=True;Application Name=SSIS-Package-{9F2256F6-567E-4A48-8ACF-75406CF550A0}LUCASVM.base_dw1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DEVELOPER"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D16F64E9-0F3D-4066-AE91-3C1E5B21381F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DEVELOPER"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DEVELOPER\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"default_schema"."developer_dim"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DEVELOPER\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LUCASVM.base_dw1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LUCASVM.base_dw1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DEVELOPER\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DEVELOPER\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[developer]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="developer"
+                      externalMetadataColumnId="Package\DEVELOPER\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[developer_name]"
+                      lineageId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Output].Columns[developer]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DEVELOPER\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[developer_id]"
+                      dataType="i4"
+                      name="developer_id" />
+                    <externalMetadataColumn
+                      refId="Package\DEVELOPER\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[developer_name]"
+                      dataType="wstr"
+                      length="255"
+                      name="developer_name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DEVELOPER\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\DEVELOPER\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DEVELOPER\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DEVELOPER\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DEVELOPER\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DEVELOPER\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DEVELOPER\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[games]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT developer
+FROM  games</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DEVELOPER\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{8A98808D-25CA-45A3-A956-A92472C7D141}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LUCASVM.base_origen]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Output].Columns[developer]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[developer]"
+                      length="255"
+                      lineageId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Output].Columns[developer]"
+                      name="developer"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[developer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="developer" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[developer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[developer]"
+                      name="developer" />
+                    <outputColumn
+                      refId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DEVELOPER.Paths[OLE DB Source Output]"
+              endId="Package\DEVELOPER\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DEVELOPER\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\GAME"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{24A55893-07D5-48AA-8EEB-DD3D287A669B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GAME"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\GAME\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"default_schema"."game_dim"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\GAME\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LUCASVM.base_dw1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LUCASVM.base_dw1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[game_id]"
+                      cachedDataType="i4"
+                      cachedName="game_id"
+                      externalMetadataColumnId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[game_id]"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[game_id]" />
+                    <inputColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[title]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="title"
+                      externalMetadataColumnId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[title]"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[title]" />
+                    <inputColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[description]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="description"
+                      externalMetadataColumnId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[description]"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[description]" />
+                    <inputColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[release_date]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="release_date"
+                      externalMetadataColumnId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[release_date]"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[release_date]" />
+                    <inputColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[characteristics]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="characteristics"
+                      externalMetadataColumnId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[characteristics]"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[characteristics]" />
+                    <inputColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[image_url]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="image_url"
+                      externalMetadataColumnId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[image_url]"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[image_url]" />
+                    <inputColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[video_url]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="video_url"
+                      externalMetadataColumnId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[video_url]"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[video_url]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[game_id]"
+                      dataType="i4"
+                      name="game_id" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[title]"
+                      dataType="wstr"
+                      length="255"
+                      name="title" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[description]"
+                      dataType="wstr"
+                      length="2147483647"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[release_date]"
+                      dataType="dbTimeStamp"
+                      name="release_date" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[characteristics]"
+                      dataType="wstr"
+                      length="255"
+                      name="characteristics" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[image_url]"
+                      dataType="wstr"
+                      length="255"
+                      name="image_url" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[video_url]"
+                      dataType="wstr"
+                      length="255"
+                      name="video_url" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\GAME\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GAME\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\GAME\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\GAME\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\GAME\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\GAME\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[games]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\GAME\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{8A98808D-25CA-45A3-A956-A92472C7D141}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LUCASVM.base_origen]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[game_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[game_id]"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[game_id]"
+                      name="game_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[title]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[title]"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[title]"
+                      name="title"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[description]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[description]"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[description]"
+                      name="description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[price]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[price]"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[price]"
+                      name="price"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[release_date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[release_date]"
+                      length="10"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[release_date]"
+                      name="release_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[developer]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[developer]"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[developer]"
+                      name="developer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[platform]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[platform]"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[platform]"
+                      name="platform"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[genres]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[genres]"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[genres]"
+                      name="genres"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[rating]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rating]"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[rating]"
+                      name="rating"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[characteristics]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[characteristics]"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[characteristics]"
+                      name="characteristics"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[image_url]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[image_url]"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[image_url]"
+                      name="image_url"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[video_url]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[video_url]"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].Columns[video_url]"
+                      name="video_url"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[game_id]"
+                      dataType="i4"
+                      name="game_id" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[title]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="title" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[description]"
+                      codePage="1252"
+                      dataType="text"
+                      name="description" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[price]"
+                      dataType="numeric"
+                      name="price"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[release_date]"
+                      dataType="wstr"
+                      length="10"
+                      name="release_date" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[developer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="developer" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[platform]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="platform" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[genres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="genres" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rating]"
+                      dataType="i4"
+                      name="rating" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[characteristics]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="characteristics" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[image_url]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="image_url" />
+                    <externalMetadataColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[video_url]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="video_url" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[game_id]"
+                      dataType="i4"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[game_id]"
+                      name="game_id" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[title]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[title]"
+                      name="title" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[description]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[description]"
+                      name="description" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[price]"
+                      dataType="numeric"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[price]"
+                      name="price"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[release_date]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[release_date]"
+                      name="release_date" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[developer]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[developer]"
+                      name="developer" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[platform]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[platform]"
+                      name="platform" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[genres]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[genres]"
+                      name="genres" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rating]"
+                      dataType="i4"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rating]"
+                      name="rating" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[characteristics]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[characteristics]"
+                      name="characteristics" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[image_url]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[image_url]"
+                      name="image_url" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[video_url]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[video_url]"
+                      name="video_url" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\GAME.Paths[OLE DB Source Output]"
+              endId="Package\GAME\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\GAME\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PLATAFORMA"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D2FC3842-95A1-4370-9956-F4F6CB4E72A0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PLATAFORMA"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\PLATAFORMA\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"default_schema"."plat_gen_dim"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PLATAFORMA\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LUCASVM.base_dw1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LUCASVM.base_dw1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\PLATAFORMA\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\PLATAFORMA\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[PLATAFORMA]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="PLATAFORMA"
+                      externalMetadataColumnId="Package\PLATAFORMA\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[plataforma]"
+                      lineageId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output].Columns[PLATAFORMA]" />
+                    <inputColumn
+                      refId="Package\PLATAFORMA\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[GENERO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="GENERO"
+                      externalMetadataColumnId="Package\PLATAFORMA\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[genero]"
+                      lineageId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output].Columns[GENERO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PLATAFORMA\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[platform_id]"
+                      dataType="i4"
+                      name="platform_id" />
+                    <externalMetadataColumn
+                      refId="Package\PLATAFORMA\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[plataforma]"
+                      dataType="wstr"
+                      length="45"
+                      name="plataforma" />
+                    <externalMetadataColumn
+                      refId="Package\PLATAFORMA\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[genero]"
+                      dataType="wstr"
+                      length="45"
+                      name="genero" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PLATAFORMA\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\PLATAFORMA\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PLATAFORMA\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PLATAFORMA\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PLATAFORMA\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PLATAFORMA\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PLATAFORMA\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT SUBSTRING(platform, 1, 45) AS PLATAFORMA, SUBSTRING(genres, 1, 45) AS GENERO
+FROM  games</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PLATAFORMA\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{8A98808D-25CA-45A3-A956-A92472C7D141}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LUCASVM.base_origen]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output].Columns[PLATAFORMA]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PLATAFORMA]"
+                      length="45"
+                      lineageId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output].Columns[PLATAFORMA]"
+                      name="PLATAFORMA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output].Columns[GENERO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GENERO]"
+                      length="45"
+                      lineageId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output].Columns[GENERO]"
+                      name="GENERO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PLATAFORMA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="PLATAFORMA" />
+                    <externalMetadataColumn
+                      refId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GENERO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="GENERO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PLATAFORMA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      lineageId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PLATAFORMA]"
+                      name="PLATAFORMA" />
+                    <outputColumn
+                      refId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GENERO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      lineageId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GENERO]"
+                      name="GENERO" />
+                    <outputColumn
+                      refId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\PLATAFORMA.Paths[OLE DB Source Output]"
+              endId="Package\PLATAFORMA\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\PLATAFORMA\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\REVIEW"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F5039A63-966C-4091-9572-1C66C4FF4E09}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="REVIEW"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\REVIEW\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"default_schema"."review_dim"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\REVIEW\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LUCASVM.base_dw1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LUCASVM.base_dw1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[comment]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="comment"
+                      externalMetadataColumnId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[comment]"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]" />
+                    <inputColumn
+                      refId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[rating]"
+                      cachedDataType="i4"
+                      cachedName="rating"
+                      externalMetadataColumnId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[review_date]"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].Columns[rating]" />
+                    <inputColumn
+                      refId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[user_id]"
+                      cachedDataType="i4"
+                      cachedName="user_id"
+                      externalMetadataColumnId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[review_id]"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].Columns[user_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[review_id]"
+                      dataType="i4"
+                      name="review_id" />
+                    <externalMetadataColumn
+                      refId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[review_date]"
+                      dataType="dbTimeStamp"
+                      name="review_date" />
+                    <externalMetadataColumn
+                      refId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[comment]"
+                      dataType="wstr"
+                      length="2147483647"
+                      name="comment" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\REVIEW\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\REVIEW\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\REVIEW\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\REVIEW\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\REVIEW\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\REVIEW\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[reviews]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\REVIEW\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{8A98808D-25CA-45A3-A956-A92472C7D141}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LUCASVM.base_origen]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].Columns[user_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[user_id]"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].Columns[user_id]"
+                      name="user_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].Columns[game_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[game_id]"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].Columns[game_id]"
+                      name="game_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].Columns[rating]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rating]"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].Columns[rating]"
+                      name="rating"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[comment]"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]"
+                      name="comment"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[user_id]"
+                      dataType="i4"
+                      name="user_id" />
+                    <externalMetadataColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[game_id]"
+                      dataType="i4"
+                      name="game_id" />
+                    <externalMetadataColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rating]"
+                      dataType="i4"
+                      name="rating" />
+                    <externalMetadataColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[comment]"
+                      codePage="1252"
+                      dataType="text"
+                      name="comment" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[user_id]"
+                      dataType="i4"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[user_id]"
+                      name="user_id" />
+                    <outputColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[game_id]"
+                      dataType="i4"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[game_id]"
+                      name="game_id" />
+                    <outputColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rating]"
+                      dataType="i4"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rating]"
+                      name="rating" />
+                    <outputColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[comment]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[comment]"
+                      name="comment" />
+                    <outputColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\REVIEW.Paths[OLE DB Source Output]"
+              endId="Package\REVIEW\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\REVIEW\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\USER"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{115598D5-F74D-4A8A-81D6-5FEEAC5DF2E3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="USER"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\USER\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"default_schema"."user_dim"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\USER\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LUCASVM.base_dw1]"
+                  connectionManagerRefId="Package.ConnectionManagers[LUCASVM.base_dw1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\USER\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\USER\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[user_id]"
+                      cachedDataType="i4"
+                      cachedName="user_id"
+                      externalMetadataColumnId="Package\USER\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[user_id]"
+                      lineageId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].Columns[user_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\USER\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[user_id]"
+                      dataType="i4"
+                      name="user_id" />
+                    <externalMetadataColumn
+                      refId="Package\USER\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[country]"
+                      dataType="wstr"
+                      length="255"
+                      name="country" />
+                    <externalMetadataColumn
+                      refId="Package\USER\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[gender]"
+                      dataType="wstr"
+                      length="255"
+                      name="gender" />
+                    <externalMetadataColumn
+                      refId="Package\USER\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[registration_date]"
+                      dataType="dbTimeStamp"
+                      name="registration_date" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\USER\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\USER\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\USER\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\USER\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\USER\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\USER\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\USER\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[users]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\USER\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{8A98808D-25CA-45A3-A956-A92472C7D141}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[LUCASVM.base_origen]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].Columns[user_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[user_id]"
+                      lineageId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].Columns[user_id]"
+                      name="user_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].Columns[username]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[username]"
+                      length="255"
+                      lineageId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].Columns[username]"
+                      name="username"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].Columns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[email]"
+                      length="255"
+                      lineageId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].Columns[password]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[password]"
+                      length="255"
+                      lineageId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].Columns[password]"
+                      name="password"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[user_id]"
+                      dataType="i4"
+                      name="user_id" />
+                    <externalMetadataColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[username]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="username" />
+                    <externalMetadataColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[password]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="password" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[user_id]"
+                      dataType="i4"
+                      lineageId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[user_id]"
+                      name="user_id" />
+                    <outputColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[username]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[username]"
+                      name="username" />
+                    <outputColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[email]"
+                      name="email" />
+                    <outputColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[password]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[password]"
+                      name="password" />
+                    <outputColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\USER\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\USER.Paths[OLE DB Source Output]"
+              endId="Package\USER\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\USER\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="143,42"
+          Id="Package\DEVELOPER"
+          TopLeft="68,14.0833332633807" />
+        <NodeLayout
+          Size="120.5,42"
+          Id="Package\REVIEW"
+          TopLeft="79,83.4166662523316" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\PLATAFORMA"
+          TopLeft="63,155.99999922514" />
+        <NodeLayout
+          Size="108,42"
+          Id="Package\USER"
+          TopLeft="89,224.249998886138" />
+        <NodeLayout
+          Size="110,42"
+          Id="Package\GAME"
+          TopLeft="85,294.666665203042" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DEVELOPER">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.5,42"
+          Id="Package\DEVELOPER\OLE DB Source"
+          TopLeft="130,105.083332811379" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\DEVELOPER\ADO NET Destination"
+          TopLeft="402,108.333332795236" />
+        <EdgeLayout
+          Id="Package\DEVELOPER.Paths[OLE DB Source Output]"
+          TopLeft="283.5,127.708332803307">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="118.5,0"
+              Start="0,0"
+              End="111,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="111,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\REVIEW">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.5,42"
+          Id="Package\REVIEW\OLE DB Source"
+          TopLeft="97,119" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\REVIEW\ADO NET Destination"
+          TopLeft="398,121" />
+        <EdgeLayout
+          Id="Package\REVIEW.Paths[OLE DB Source Output]"
+          TopLeft="250.5,141">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="147.5,0"
+              Start="0,0"
+              End="140,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="140,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\PLATAFORMA">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.5,42"
+          Id="Package\PLATAFORMA\OLE DB Source"
+          TopLeft="99,188" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\PLATAFORMA\ADO NET Destination"
+          TopLeft="340,191" />
+        <EdgeLayout
+          Id="Package\PLATAFORMA.Paths[OLE DB Source Output]"
+          TopLeft="252.5,210.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="87.5,0"
+              Start="0,0"
+              End="80,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="80,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\USER">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.5,42"
+          Id="Package\USER\OLE DB Source"
+          TopLeft="188,260" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\USER\ADO NET Destination"
+          TopLeft="479,258" />
+        <EdgeLayout
+          Id="Package\USER.Paths[OLE DB Source Output]"
+          TopLeft="341.5,280">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="137.5,0"
+              Start="0,0"
+              End="130,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="130,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <TaskHost
+    design-time-name="Package\GAME">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.5,42"
+          Id="Package\GAME\OLE DB Source"
+          TopLeft="182,132" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\GAME\ADO NET Destination"
+          TopLeft="516,130" />
+        <EdgeLayout
+          Id="Package\GAME.Paths[OLE DB Source Output]"
+          TopLeft="335.5,152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="180.5,0"
+              Start="0,0"
+              End="173,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="173,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DEVELOPER\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DEVELOPER\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\REVIEW\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\REVIEW\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\PLATAFORMA\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\PLATAFORMA\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\USER\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\USER\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\GAME\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\GAME\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
