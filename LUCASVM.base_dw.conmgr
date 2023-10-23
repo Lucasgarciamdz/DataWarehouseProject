@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="LUCASVM.base_dw"
+  DTS:DTSID="{0420DB78-9631-4661-8E27-F7B2189CE972}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=LUCASVM;Initial Catalog=base_dw;Provider=SQLOLEDB.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-DataWarehouseProject-{0420DB78-9631-4661-8E27-F7B2189CE972}LUCASVM.base_dw;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
